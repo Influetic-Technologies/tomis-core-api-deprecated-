@@ -5,6 +5,8 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -20,10 +22,13 @@ public class Driver {
 	@Id
 	@GeneratedValue
 	private long id;
-
+	
 	private String firstName;
 	private String lastName;
 	private String drivingLicense;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dateOfBirth;
 
 	@CreatedDate
 	private Date createdDate;
@@ -34,11 +39,12 @@ public class Driver {
 	public Driver() {
 	}
 
-	public Driver(String firstName, String lastName, String drivingLicense) {
+	public Driver(String firstName, String lastName, String drivingLicense, Date dateOfBirth) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.drivingLicense = drivingLicense;
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public long getId() {
@@ -57,6 +63,9 @@ public class Driver {
 		return drivingLicense;
 	}
 
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
 	public Date getCreatedDate() {
 		return createdDate;
 	}
